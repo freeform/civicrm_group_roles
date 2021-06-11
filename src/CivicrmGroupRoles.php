@@ -276,7 +276,7 @@ class CivicrmGroupRoles {
         'group' => $rule['group'],
       ]);
       if ($contacts['count'] > 0) {
-        if ($this->isDebuggingEnabled) {
+        if ($this->isDebuggingEnabled()) {
           $msg = 'Role @role should be held by user @user (@uid) because they are part of group @group (contactID: @cid).';
           $params = [
             '@role' => $rule['role'],
@@ -412,7 +412,7 @@ function validateGroups(array $groups) {
 
     // CRM-11161: Exclude smart groups as we don't want to add contacts statically to a smart group
     if (!empty($group_result['values'][0]['saved_search_id'])) {
-      if ($this->isDebuggingEnabled) {
+      if ($this->isDebuggingEnabled()) {
         $msg = 'Group ID @groupId is a smart group, so the user was not added to it statically.';
         $variables = ['@groupId' => $groupId];
         \Drupal::logger('civicrm_group_roles')->info($msg, $variables);
