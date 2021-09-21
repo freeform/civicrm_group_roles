@@ -4,4 +4,4 @@ services:
     arguments: ['@civicrm', '@config.factory', '@entity_type.manager']
   civicrm_group_roles.batch.sync:
     class: \Drupal\civicrm_group_roles\Batch\Sync
-    arguments: ['@string_translation']
+    arguments: ['@string_translation', '@messenger']
