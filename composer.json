@@ -1,0 +1,5 @@
+"freeform/civicrm_group_roles": {
+    "type": "git",
+    "url": "https://github.com/freeform/civicrm_group_roles.git",
+    "no-api": true
+}
