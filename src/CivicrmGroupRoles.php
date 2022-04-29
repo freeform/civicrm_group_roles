@@ -270,12 +270,14 @@ class CivicrmGroupRoles {
     $rules = $this->getRules();
     $rulesMapping = $this->getRulesMapping($rules);
     foreach ($rulesMapping as $rule) {
-      $contacts = civicrm_api3('Contact', 'get', [
-        'sequential' => 1,
-        'id' => $cid,
-        'group' => $rule['group'],
+      $contacts = civicrm_api4('Contact', 'get', [
+        'where' => [
+          ['id', '=', $cid],
+          ['groups', 'IN', $rule['group']],
+        ],
+        'checkPermissions' => FALSE,
       ]);
-      if ($contacts['count'] > 0) {
+      if ($contacts->count() > 0) {
         if ($this->isDebuggingEnabled()) {
           $msg = 'Role @role should be held by user @user (@uid) because they are part of group @group (contactID: @cid).';
           $params = [
