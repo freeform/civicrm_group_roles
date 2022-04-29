@@ -139,15 +139,22 @@ class CivicrmGroupRoles {
     }
 
     // Find contacts with applicable types.
-    $select = $this->getDatabase()
-      ->select('civicrm_uf_match', 'uf')
-      ->fields('uf', ['contact_id']);
-
+    $params = [
+      'select' => [
+        'contact_id',
+      ],
+      'checkPermissions' => FALSE,
+    ];
     if ($limit) {
-      $select->range(0, $limit)->orderRandom();
+      $params['limit'] = $limit;
+      $params['offset'] = 0;
+    }
+    $uFMatches = civicrm_api4('UFMatch', 'get', $params);
+    foreach ($uFMatches as $match) {
+      $contacts[] = $match['contact_id'];
     }
 
-    return $select->execute()->fetchCol();
+    return $contacts;
   }
 
   /**
