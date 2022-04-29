@@ -1,5 +1,12 @@
-"freeform/civicrm_group_roles": {
-    "type": "git",
-    "url": "https://github.com/freeform/civicrm_group_roles.git",
-    "no-api": true
+{
+  "name": "freeform/civicrm_group_roles",
+  "type": "drupal-module",
+  "description": "Sync Drupal Roles to CiviCRM Groups.",
+  "keywords": ["Drupal"],
+  "license": "GPL-2.0+",
+  "minimum-stability": "dev",
+  "support": {
+    "issues": "https://github.com/freeform/civicrm_group_roles",
+    "source": "https://github.com/freeform/civicrm_group_roles.git"
+  }
 }
